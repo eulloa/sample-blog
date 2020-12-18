@@ -4,16 +4,18 @@ import Link from 'next/link';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData } from '../lib/posts';
-import Date from '../components/date';
+import FormatDate from '../components/formatDate';
 
 export default function Home({ allPostsData }) {
+  const classNames = [utilStyles.headingMd, utilStyles.textCenter].join(' ');
+
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>Welcome to my blog</p>
+      <section className={classNames}>
+        <p>Welcome to my blog | {new Date().toLocaleDateString()}</p>
       </section>
       <section className={`${utilStyles.headingMD} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
@@ -26,7 +28,7 @@ export default function Home({ allPostsData }) {
                 </Link>
                 <br />
                 <small className={utilStyles.lightText}>
-                  <Date dateString={date} />
+                  <FormatDate dateString={date} />
                 </small>
               </li>
             ))}
